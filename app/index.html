@@ -183,9 +183,6 @@ input:focus, textarea:focus { outline: none; border-color: var(--accent); box-sh
 .t-row span { font-size: .8rem; color: var(--muted); }
 .t-row b { font-size: 1.1rem; }
 .t-row:first-child b::first-letter { text-transform: uppercase; }
-.mail { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; font-size: .88rem; }
-.mail-h { background: var(--soft); padding: 8px 12px; font-size: .8rem; color: var(--muted); }
-.mail-b { padding: 12px; display: grid; gap: 6px; background: var(--surface); }
 .done .btn { width: 100%; }
 
 /* Tableta */
@@ -306,11 +303,7 @@ input:focus, textarea:focus { outline: none; border-color: var(--accent); box-sh
     </div>
     <div class="ticket" id="ticket"></div>
     <a class="btn btn-primary" id="done-wa" target="_blank" rel="noopener">Mandar foto de referencia por WhatsApp</a>
-    <div id="demo-mail" hidden>
-      <p class="muted" style="margin:0 0 8px">Así le llega a ella (mail con notificación en el celular):</p>
-      <div class="mail"><div class="mail-h" id="mail-subj"></div><div class="mail-b" id="mail-body"></div></div>
-    </div>
-    <button class="btn btn-soft" id="again">Volver</button>
+    <button class="btn btn-soft" id="again">Volver al inicio</button>
   </div>
 </div>
 
@@ -508,24 +501,17 @@ function showDone(b) {
     el('div', { class: 't-rows' }, row('Día', fechaLarga(b.fecha)), row('Hora', b.hora), row('A nombre de', b.nombre)));
   $('done-wa').hidden = !S.cat.whatsapp;
   $('done-wa').href = waLink(S.cat.whatsapp, `¡Hola! Soy ${b.nombre}, reservé ${b.servicio} para el ${cuando}. Te mando mi foto de referencia:`);
-  if (!API_URL) {
-    $('demo-mail').hidden = false;
-    $('mail-subj').textContent = `💅 Nuevo turno: ${b.nombre} · ${cuando}`;
-    $('mail-body').replaceChildren(el('b', {}, `${b.nombre} reservó ${b.servicio}`), el('span', {}, cuando),
-      el('span', {}, `WhatsApp: ${b.telefono}${b.forma ? ` · Forma: ${b.forma}` : ''}`), b.nota ? el('span', {}, `Nota: ${b.nota}`) : '',
-      el('span', { style: 'color:var(--accent-text);text-decoration:underline' }, 'Confirmarle por WhatsApp'));
-  }
   $('done').hidden = false;
   $('done').scrollTop = 0;
 }
 
-$('again').addEventListener('click', () => { $('done').hidden = true; loadSlots(); });
+$('again').addEventListener('click', () => { location.href = location.pathname; }); // página limpia, arriba de todo
 
 // ---------- Modo demostración: imita al backend sin red ----------
 function demoApi() {
   $('demo').hidden = false; $('creditos').hidden = false;
   const cat = {
-    negocio: 'Cupedia', subtitulo: 'Uñas · Caracas · Lun a sáb', whatsapp: '584141234567', dias: 21,
+    negocio: 'Cupedia', subtitulo: 'Uñas · Caracas · Lun a sáb', whatsapp: '5491140456207', dias: 21,
     abiertos: [1, 2, 3, 4, 5, 6], formas: ['Almendrada', 'Cuadrada', 'Coffin', 'Stiletto'],
     servicios: [
       { nombre: 'Gel semipermanente', precio: '10', duracion: 60, detalle: 'Manos o pies, 2 tonos lisos', foto: 'img/gel.jpg' },
