@@ -214,7 +214,7 @@ function setup() {
   hoja('Ajustes', [
     ['Clave', 'Valor'],
     ['negocio', 'Cupedia'],
-    ['subtitulo', 'Uñas a domicilio · Caracas'],
+    ['subtitulo', 'Uñas · Maracaibo'],
     ['whatsapp', '04141234567'],
     ['codigo_pais', '58'],
     ['formas', 'Almendrada, Cuadrada, Coffin, Stiletto'],

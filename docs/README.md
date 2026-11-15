@@ -32,7 +32,7 @@ app/index.html ──fetch──► Apps Script (Web App de la cuenta de Google 
 
 1. Andá a [sheets.new](https://sheets.new) con tu cuenta de Google y ponele de nombre **Cupedia – turnos (prueba)**.
 2. Abrí **Extensiones → Apps Script**. Borrá lo que haya y pegá el contenido de `app/Code.gs`. Ponele de nombre al proyecto **Cupedia**.
-3. Entrá a ⚙️ **Configuración del proyecto** y tildá *Mostrar el archivo de manifiesto "appsscript.json"*. Volvé al editor, abrí `appsscript.json` y reemplazalo por el de `app/appsscript.json` (deja la zona horaria en Caracas).
+3. Entrá a ⚙️ **Configuración del proyecto** y tildá *Mostrar el archivo de manifiesto "appsscript.json"*. Volvé al editor, abrí `appsscript.json` y reemplazalo por el de `app/appsscript.json` (deja la zona horaria `America/Caracas`: es la de toda Venezuela, Maracaibo incluida).
 4. En el editor elegí la función `setup` y tocá **Ejecutar**. Google te va a pedir permisos:
    - Te va a decir *"Google no verificó esta app"*. Es normal, porque el script es tuyo: **Configuración avanzada → Ir a Cupedia (no seguro) → Permitir**.
    - Pide permisos para la planilla, Calendar, enviar mails y ejecutar cuando no estás. Son exactamente los que usa.
