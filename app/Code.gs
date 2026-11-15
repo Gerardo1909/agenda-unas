@@ -44,11 +44,11 @@ function catalog_() {
 
 function servicios_() {
   return filas_('Servicios')
-    .filter(r => r['Nombre'] && String(r['Activo']).toUpperCase() !== 'FALSE' && r['Activo'] !== false)
+    .filter(r => r['Nombre'] && !/^(false|no|0)$/i.test(String(r['Activo']).trim()))
     .map(r => ({
       nombre: String(r['Nombre']),
       precio: r['Precio'],
-      duracion: Number(r['Duración (min)']) || 60,
+      duracion: durMin_(r['Duración (min)']),
       foto: foto_(r['Foto']),
       detalle: String(r['Detalle'] || ''),
     }));
@@ -98,7 +98,7 @@ function slots_(dateStr, dur) {
 function horario_() {
   const out = {};
   filas_('Horario').forEach(r => {
-    const dia = DIAS.indexOf(String(r['Día']).trim());
+    const dia = DIAS.findIndex(d => norm_(d) === norm_(r['Día']));
     const abre = min_(r['Abre']), cierra = min_(r['Cierra']);
     if (dia >= 0 && abre != null && cierra > abre) out[dia] = { abre, cierra };
   });
@@ -141,7 +141,8 @@ function book_(b) {
     lock.releaseLock();
   }
 
-  avisarNuevo_(nombre, tel, s.nombre, forma, nota, start);
+  try { avisarNuevo_(nombre, tel, s.nombre, forma, nota, start); }
+  catch (err) { console.error(err); } // ponytail: el turno ya está en Calendar; un mail fallido no debe asustar a la clienta
   return { ok: true };
 }
 
@@ -212,7 +213,7 @@ function setup() {
   ]);
   hoja('Ajustes', [
     ['Clave', 'Valor'],
-    ['negocio', 'Mi estudio de uñas'],
+    ['negocio', 'Cupedia'],
     ['subtitulo', 'Uñas a domicilio · Caracas'],
     ['whatsapp', '04141234567'],
     ['codigo_pais', '58'],
@@ -239,17 +240,22 @@ function ajustes_() {
 
 function min_(v) {
   if (v instanceof Date) return v.getHours() * 60 + v.getMinutes();
-  const m = String(v).match(/^(\d{1,2}):(\d{2})/);
-  return m ? Number(m[1]) * 60 + Number(m[2]) : null;
+  const m = String(v).trim().toLowerCase().match(/^(\d{1,2})(?:[:.](\d{2}))?\s*([ap])?\.?\s*m?/);
+  if (!m) return null;
+  const h = m[3] ? Number(m[1]) % 12 + (m[3] === 'p' ? 12 : 0) : Number(m[1]); // 9am, 6 pm, 18:00
+  return h * 60 + Number(m[2] || 0);
 }
 
 function telWa_(tel, cod) {
   tel = String(tel || '').replace(/\D/g, '');
   cod = String(cod || '58');
   if (tel.startsWith('0')) return cod + tel.slice(1); // 0414... -> 58414...
-  return tel.startsWith(cod) ? tel : cod + tel;
+  return tel.startsWith(cod) || tel.length > 10 ? tel : cod + tel; // >10 dígitos: ya trae código de otro país
 }
 
+const norm_ = s => String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim().toLowerCase();
+// "90", "90 min", "1h", "1,5 h" -> minutos; vacío o ilegible -> 60
+const durMin_ = v => { const n = parseFloat(String(v).replace(',', '.')); return n > 0 ? Math.round(/h/i.test(v) ? n * 60 : n) : 60; };
 const hhmm_ = t => String(Math.floor(t / 60)).padStart(2, '0') + ':' + String(t % 60).padStart(2, '0');
 const hoy_ = () => { const d = new Date(); d.setHours(0, 0, 0, 0); return d; };
 const esc_ = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));

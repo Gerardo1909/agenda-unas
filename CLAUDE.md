@@ -1,4 +1,4 @@
-# Agenda de uñas
+# Agenda de uñas (negocio: Cupedia)
 
 Página de turnos para una amiga manicurista en **Venezuela** que no es técnica. Hoy coordina todo por WhatsApp y de memoria. Es un favor del programador (dueño de este repo): la idea es **armar y soltar**, que ella lo mantenga sola con herramientas de Google que ya conoce.
 
@@ -26,19 +26,15 @@ Página de turnos para una amiga manicurista en **Venezuela** que no es técnica
 - **Rol dueña = Google Sheet + Calendar** (su panel de admin, protegido con su login). Rol clienta = `index.html`. No hay panel admin propio, a propósito.
 - `investigacion/`: informes de los subagentes (SaaS, Canva/no-code, arquitecturas, notificaciones/pagos Venezuela).
 
-## Estado (2026-11-14)
-- **Hecho:** prototipo funcionando en modo demo.
-  - Artifact privado: https://claude.ai/artifact/1Ex9KzDzQvaM1N45ZxJnbU
-  - El usuario dice que cubre ~70% de lo que quiere; faltan ajustes de frontend.
-- **Probado:** la lógica de horarios (`freeSlots`, `telWa_`, `min_`), con asserts en node.
-- **NO probado:** `Code.gs` en Google real.
-- **Pendiente de probar el primer día:**
-  - que le llegue la notificación del mail al celular;
-  - que las miniaturas de Drive carguen desde Venezuela;
-  - la latencia de Apps Script.
-- **Falta:**
-  - fotos y precios reales, número de WhatsApp y nombre del negocio;
-  - deploy (ver `app/README.md`).
+## Estado (2026-11-15)
+- **Hecho:**
+  - rediseño fucsia del frontend, con fotos de ejemplo en `app/img/` (créditos en `CREDITOS.md`; son de relleno, se reemplazan por las de ella vía Drive);
+  - parseo tolerante de la planilla en `Code.gs` (días sin tilde, `9am`, `1h`, `NO` en Activo, números extranjeros);
+  - test con asserts: `node tests/code.test.js`.
+- **Deploy:** GitHub Pages (repo público Gerardo1909/agenda-unas). La raíz `index.html` redirige a `app/`. Sin CI.
+- **Guías:** `docs/README.md` (probar con datos propios, pruebas manuales, entrega) y `docs/guia-para-ella.md`.
+- **NO probado todavía:** `Code.gs` en Google real. Las pruebas manuales están listadas en `docs/README.md`, Parte B.
+- **Trampa clave:** el script corre como la cuenta que lo implementa. Para entregarlo, tiene que implementarlo la cuenta de ella.
 
 ## Fuera del MVP (agregar solo si ella lo pide)
 - seña online;
