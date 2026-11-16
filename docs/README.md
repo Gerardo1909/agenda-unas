@@ -45,11 +45,11 @@ app/index.html ──fetch──► Apps Script (Web App de la cuenta de Google 
 
 ### A2. Publicar el script como Web App
 
-1. En el editor tocá **Implementar → Nueva implementación**. En el engranaje elegí **Aplicación web**.
+1. En el editor tocá **Implementar → Nueva implementación** (en inglés: botón azul **Deploy → New deployment**, arriba a la derecha). En el engranaje elegí **Aplicación web** (*Web app*).
 2. Completá así:
-   - **Ejecutar como:** *Yo*;
-   - **Quién tiene acceso:** *Cualquier persona*.
-3. Tocá **Implementar** y copiá la **URL de la aplicación web**. Termina en `/exec`.
+   - **Ejecutar como:** *Yo* (*Execute as: Me*);
+   - **Quién tiene acceso:** *Cualquier persona* (*Who has access: Anyone*, no "Anyone with Google account").
+3. Tocá **Implementar** (*Deploy*) y copiá la **URL de la aplicación web** (*Web app URL*). Termina en `/exec`.
 4. Probala en el navegador agregándole `?action=catalog` al final. Tenés que ver un JSON con `"negocio":"Cupedia"` y los servicios.
 
 **Si cambiás `Code.gs` más adelante:** andá a **Implementar → Gestionar implementaciones → ✏️ → Versión: Nueva versión → Implementar**. Así la URL no cambia. Si en cambio hacés *Nueva implementación*, se genera una URL nueva y hay que actualizar `API_URL`.
@@ -104,13 +104,17 @@ Hacelas en orden, con la página publicada abierta en el celular. Marcá cada un
 
 Lo importante: **los pasos de script y despliegue los tiene que hacer su cuenta de Google**, no la tuya. Si vos implementás estando logueado con tu cuenta, aunque la planilla sea de ella, los turnos se crean en *tu* Calendar y los mails te llegan a *vos*.
 
-Lo más simple es hacerlo juntos por videollamada, o con ella prestándote el celular o la compu ya logueada.
+Ella tiene una cuenta de Google dedicada a Cupedia, así que lo hacés **vos a distancia con sus credenciales**, prestadas por un rato. Ella solo sigue la sección *"Antes de empezar"* de `docs/guia-para-ella.md`.
 
 ### C1. Con la cuenta de ella
 
-1. Ella crea la planilla **Cupedia – turnos** desde su cuenta (o la creás vos en su compu) y te la comparte como **Editor**. Así podés ayudarla después.
-2. Se repiten los pasos **A1 y A2 logueados como ella**: pegar `Code.gs`, el manifiesto, ejecutar `setup`, aceptar permisos e implementar. El aviso de "app no verificada" le va a salir a ella; explicale que es normal porque el script es suyo.
-3. Completan **Ajustes** (su WhatsApp, el nombre) y **Servicios** con sus precios y fotos reales.
+1. **Coordinar un horario** en que ella tenga el celular a mano. Google va a pedir confirmar el inicio de sesión ("¿Sos vos?" o un código), porque lo ve desde Argentina. Sin eso te bloquea.
+2. Entrá en una **ventana de incógnito** solo con la cuenta de ella, para que Apps Script no mezcle cuentas con la tuya.
+3. Creá la planilla **Cupedia – turnos** en su Drive y compartila con tu cuenta como **Editor**. Así podés ayudarla después sin su clave.
+4. Repetí los pasos **A1 y A2** logueado como ella: pegar `Code.gs` y el manifiesto, ejecutar `setup`, aceptar permisos e implementar (*Deploy → New deployment → Web app*, *Execute as: Me*, *Who has access: Anyone*). Copiá la URL `/exec`.
+5. En **Ajustes** poné `whatsapp` → `04246379226`. En **Servicios** van sus precios y las fotos reales: subilas a **su** Drive, compartidas con *Cualquier persona con el enlace*.
+6. Antes de soltar, confirmá que ella tenga la cuenta en las apps **Gmail** y **Google Calendar** del celular, con notificaciones. Si no, los avisos no le llegan a ningún lado.
+7. Al terminar: cerrá sesión y pedile que **cambie la contraseña**. Tu acceso de editor a la planilla queda; su clave no.
 
 ### C2. Apuntar la página a su script
 

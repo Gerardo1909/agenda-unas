@@ -26,14 +26,17 @@ Página de turnos para una amiga manicurista en **Venezuela** que no es técnica
 - **Rol dueña = Google Sheet + Calendar** (su panel de admin, protegido con su login). Rol clienta = `index.html`. No hay panel admin propio, a propósito.
 - `investigacion/`: informes de los subagentes (SaaS, Canva/no-code, arquitecturas, notificaciones/pagos Venezuela).
 
-## Estado (2026-11-15)
+## Estado (2026-11-16)
 - **Hecho:**
   - rediseño fucsia del frontend, con fotos de ejemplo en `app/img/` (créditos en `CREDITOS.md`; son de relleno, se reemplazan por las de ella vía Drive);
   - parseo tolerante de la planilla en `Code.gs` (días sin tilde, `9am`, `1h`, `NO` en Activo, números extranjeros);
   - test con asserts: `node tests/code.test.js`.
 - **Deploy:** GitHub Pages (repo público Gerardo1909/agenda-unas). La raíz `index.html` redirige a `app/`. Sin CI.
 - **Guías:** `docs/README.md` (probar con datos propios, pruebas manuales, entrega) y `docs/guia-para-ella.md`.
-- **NO probado todavía:** `Code.gs` en Google real. Las pruebas manuales están listadas en `docs/README.md`, Parte B.
+- **Marca real:** logos en `app/img/marca/` (originales sin trackear en `img/`); paleta azul #01426A + rosa #FF8197.
+- **`API_URL`** apunta al deploy de PRUEBA con la cuenta del dueño; al entregar se reemplaza por el `/exec` de la cuenta de ella (ver `docs/README.md` Parte C).
+- **URL limpia pendiente:** `docs/url-organizacion.md`.
+- **Probado parcial:** `Code.gs` en Google real responde catálogo y horarios. Las pruebas manuales están listadas en `docs/README.md`, Parte B.
 - **Trampa clave:** el script corre como la cuenta que lo implementa. Para entregarlo, tiene que implementarlo la cuenta de ella.
 
 ## Fuera del MVP (agregar solo si ella lo pide)

@@ -2,7 +2,18 @@
 
 Tu página: **(acá va el link)**. Ponla en la bio de Instagram y en tu estado de WhatsApp.
 
-Todo se maneja desde dos apps que ya tienes: **Google Sheets** (la planilla *Cupedia – turnos*) y **Google Calendar**. No hay contraseñas nuevas.
+Todo se maneja desde dos apps que ya tienes: **Google Sheets** (la planilla *Cupedia – turnos*) y **Google Calendar**, con tu cuenta de Google de Cupedia. No hay contraseñas nuevas.
+
+## Antes de empezar: cómo lo dejamos listo (una sola vez)
+
+Gerardo lo configura todo a distancia **con tu cuenta de Cupedia**, porque los turnos y los avisos tienen que llegarte a ti. Para eso:
+
+1. **Pásale por WhatsApp el correo y la contraseña** de la cuenta de Cupedia. Es solo por un rato.
+2. **Ten el celular a mano** mientras él entra. Google va a preguntarte "¿Estás intentando iniciar sesión?" o te va a mandar un código, porque ve un inicio de sesión desde Argentina. Toca **Sí, soy yo** o pásale el código. Si no respondes a tiempo, Google lo bloquea y hay que empezar de nuevo.
+3. Si Google te avisa de "una app no verificada" o de un "inicio de sesión nuevo", es normal: es él configurando tu página.
+4. Mientras tanto, en tu celular agrega la cuenta de Cupedia en las apps **Gmail** y **Google Calendar**, y activa sus notificaciones. Si no lo haces, no te van a llegar los avisos de reservas.
+5. Cuando él te diga "listo", **cambia la contraseña** (Gmail → tu foto → *Gestionar tu cuenta de Google* → *Seguridad* → *Contraseña*). Desde ahí la cuenta queda solo tuya.
+6. Hagan juntos una **reserva de prueba** desde la página y fíjate que te llegue el mail y aparezca en tu Calendar. Después borra ese evento.
 
 ## Cuando una clienta reserva
 
